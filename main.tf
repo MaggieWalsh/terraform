@@ -1,14 +1,14 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/azurerm"
-      version = "~> 2.46.0"
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
     }
   }
 }
 
 provider "aws" {
-  shared_credentials_files = ["~/.was/credentials"]
+  shared_credentials_files = ["~/.aws/credentials"]
   region                   = "eu-west-2"
 }
 
@@ -20,7 +20,7 @@ module "instance_mod" {
   key_name     = var.key_name
 }
 
-module "vpc" {
+module "vpc_mod" {
   source = "./vpc"
 
   vpc_cidr = var.vpc_cidr
