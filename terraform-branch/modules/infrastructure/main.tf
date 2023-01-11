@@ -1,8 +1,9 @@
 module "vpc" {
-  source      = ". /vpc"
-  environment = var_environment
+  source      = "./vpc"
+  environment = var.environment
   region      = var.region
 }
+
 module "ec2" {
   source            = "./ec2"
   environment       = var.environment
@@ -11,6 +12,7 @@ module "ec2" {
   public_subnet_id  = module.subnets.public_subnet_id
   private_subnet_id = module.subnets.private_subnet_id
 }
+
 module "subnets" {
   source      = "./subnets"
   environment = var.environment
